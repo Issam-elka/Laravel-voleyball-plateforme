@@ -24,8 +24,8 @@
                     <input type="number" name="maxJoueurs" class="form-control" id="exampleInputEmail1"
                         aria-describedby="emailHelp">
                 </div>
-                
-                <select name="nom_continent" class="form-select mb-3" aria-label="Default select example">
+                <label for="exampleInputEmail1" class="form-label">Continent:</label>
+                <select name="continent_id" class="form-select mb-3" aria-label="Default select example">
                     <option selected>Choisis un continent</option>
                     @foreach ($continents as $continent)
                         <option value="{{ $continent->id }}">{{ $continent->nom_continent }}</option>
@@ -36,27 +36,29 @@
             <table class="table mt-5 table-success table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Ville</th>
-                        <th scope="col">Pays</th>
-                        <th scope="col">Max joueurs</th>
-                        <th></th>
-                        <th></th>
+                        <th class="text-center" scope="col">#</th>
+                        <th class="text-center" scope="col">Name</th>
+                        <th class="text-center" scope="col">Ville</th>
+                        <th class="text-center" scope="col">Pays</th>
+                        <th class="text-center" scope="col">Max joueurs</th>
+                        <th class="text-center" scope="col">Continent</th>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($equipes as $equipe)
                         <tr>
-                            <th scope="row">{{ $equipe->id }}</th>
-                            <td>{{ $equipe->nom }}</td>
-                            <td>{{ $equipe->ville }}</td>
-                            <td>{{ $equipe->pays }}</td>
-                            <td>{{ $equipe->maxJoueurs }}</td>
-                            <td>
+                            <th class="text-center" scope="row">{{ $equipe->id }}</th>
+                            <td class="text-center">{{ $equipe->nom }}</td>
+                            <td class="text-center">{{ $equipe->ville }}</td>
+                            <td class="text-center">{{ $equipe->pays }}</td>
+                            <td class="text-center">{{ $equipe->maxJoueurs }}</td>
+                            <td class="text-center">{{ $equipe->continents->nom_continent }}</td>
+                            <td class="text-center">
                                 <a class="btn btn-success text-white" href="/equipe/{{$equipe->id}}/edit">EDIT</a>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <form action="/equipe/{{ $equipe->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')

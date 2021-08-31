@@ -14,8 +14,8 @@ class ContinentController extends Controller
      */
     public function index()
     {
-        $continents = Continent::all();
-        return view('pages.continent.allContinent', compact('continents'));
+        // $continents = Continent::all();
+        // return view('pages.continent.allContinent', compact('continents'));
     }
 
     /**
@@ -85,8 +85,8 @@ class ContinentController extends Controller
      */
     public function destroy($id)
     {
-        $destroy = Continent::find($id);
-        $destroy->delete();
-        return redirect('/continent');
+        // $destroy = Continent::find($id);
+        // $destroy->delete();
+        // return redirect('/continent');
     }
 }

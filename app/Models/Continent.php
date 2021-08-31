@@ -9,6 +9,6 @@ class Continent extends Model
 {
     use HasFactory;
     public function equipes(){
-        return $this->belongsTo(Equipe::class, 'continent_id', 'id');
+        return $this->hasMany(Equipe::class);
     }
 }

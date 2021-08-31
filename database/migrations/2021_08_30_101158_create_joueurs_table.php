@@ -22,9 +22,15 @@ class CreateJoueursTable extends Migration
             $table->string('email');
             $table->string('genre');
             $table->string('pays_origine');
-            $table->string('role_id');
-            $table->string('equipe_id');
-            $table->string('photo_id');
+            
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->nullable()->references('id')->on('roles')->onDelete('cascade');
+
+            $table->unsignedBigInteger('equipe_id');
+            $table->foreign('equipe_id')->nullable()->references('id')->on('equipes')->onDelete('cascade');
+
+            $table->unsignedBigInteger('photo_id');
+            $table->foreign('photo_id')->nullable()->references('id')->on('photos')->onDelete('cascade');
             $table->timestamps();
         });
     }
