@@ -1,11 +1,47 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-@charset "UTF-8";
 /*!
  * Bootstrap v5.1.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ body{
+	margin:0;
+	padding:0;
+  font-family: 'Nanum Myeongjo', serif;	font-size:12px;
+    background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+	-webkit-animation: 10s linear 0s normal none infinite animate;
+	-moz-animation: 10s linear 0s normal none infinite animate;
+	-ms-animation: 10s linear 0s normal none infinite animate;
+	-o-animation: 10s linear 0s normal none infinite animate;
+	animation: 10s linear 0s normal none infinite animate;
+ 
+}
+ 
+@-webkit-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-moz-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-ms-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-o-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
 :root {
   --bs-blue: #3490dc;
   --bs-indigo: #6574cd;
@@ -52,7 +88,7 @@
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
-  --bs-body-font-size: 0.9rem;
+  --bs-body-font-size: 1.9rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.6;
   --bs-body-color: #212529;
@@ -73,10 +109,7 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-body-font-family);
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
+  font-family: 'Patrick Hand', cursive;  line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
   background-color: var(--bs-body-bg);

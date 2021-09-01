@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipe;
 use App\Models\Joueur;
+use App\Models\Photo;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class JoueurController extends Controller
 {
@@ -14,7 +18,12 @@ class JoueurController extends Controller
      */
     public function index()
     {
-        //
+        $joueurs = Joueur::all();
+        $equipes = Equipe::all();
+        $roles = Role::all();
+        $photos = Photo::all();
+        return view('pages.joueurs.createJoueur', compact('joueurs', 'photos', 'equipes', 'roles'));
+        
     }
 
     /**
@@ -35,7 +44,24 @@ class JoueurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $photo = new Photo;
+        Storage::put('public/img/', $request->file('src'));
+        $photo->src = $request->file('src')->hashName();
+        $photo->save();
+
+        $store = new Joueur;
+        $store->nom = $request->nom;
+        $store->prenom = $request->prenom;
+        $store->age = $request->age;
+        $store->tlf = $request->tlf;
+        $store->email = $request->email;
+        $store->genre = $request->genre;
+        $store->pays_origine = $request->pays_origine;
+        $store->role_id = $request->role_id;
+        $store->equipe_id = $request->equipe_id;
+        $store->photo_id = $photo->id;
+        $store->save();
+        return redirect('/joueur')->with('message', "IT'S REGISTERED!");
     }
 
     /**
@@ -55,9 +81,13 @@ class JoueurController extends Controller
      * @param  \App\Models\Joueur  $joueur
      * @return \Illuminate\Http\Response
      */
-    public function edit(Joueur $joueur)
+    public function edit($id)
     {
-        //
+        $edit = Joueur::find($id);
+        $equipes = Equipe::all();
+        $roles = Role::all();
+        $photos = Photo::all();
+        return view('pages.joueurs.editJoueur', compact('edit', 'equipes', 'roles', 'photos'));
     }
 
     /**
@@ -67,9 +97,26 @@ class JoueurController extends Controller
      * @param  \App\Models\Joueur  $joueur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Joueur $joueur)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Joueur::find($id);
+        $update->nom = $request->nom;
+        $update->prenom = $request->prenom;
+        $update->age = $request->age;
+        $update->tlf = $request->tlf;
+        $update->email = $request->email;
+        $update->genre = $request->genre;
+        $update->pays_origine = $request->pays_origine;
+        $update->role_id = $request->role_id;
+        $update->equipe_id = $request->equipe_id;
+
+        if($request->src != null){
+            Storage::delete('public/img/'.$update->photos->src);
+            Storage::put('public/img/', $request->file('src'));
+            $update->photos->src = $request->file('src')->hashName();
+        }
+        $update->push();
+        return redirect('/joueur');
     }
 
     /**
@@ -78,8 +125,17 @@ class JoueurController extends Controller
      * @param  \App\Models\Joueur  $joueur
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Joueur $joueur)
+    public function destroy($id)
     {
-        //
+        $destroy = Joueur::find($id);
+        $destroy->delete();
+        return redirect('/joueur')->with('messageDelete', "IT'S DELETED!");
+    }
+
+    public function download($id){
+        $download = Joueur::find($id);
+        // return Storage::download('/public/assets/img/portfolio/'.$download->img_portfolio);
+        $path=public_path('/storage/img/'.$download->src);
+        return response()->download($path);
     }
 }

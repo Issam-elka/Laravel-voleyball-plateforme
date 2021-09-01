@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Continent;
 use App\Models\Equipe;
+use App\Models\Joueur;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EquipeController extends Controller
 {
@@ -17,7 +20,7 @@ class EquipeController extends Controller
     {
         $equipes = Equipe::all();
         $continents = Continent::all();
-        return view('pages.equipe.allEquipe', compact('equipes', 'continents'));
+        return view('pages.equipe.createEquipe', compact('equipes', 'continents'));
     }
 
     /**
@@ -39,17 +42,13 @@ class EquipeController extends Controller
     public function store(Request $request)
     {
         $store = new Equipe;
-        // $continent = new Continent;
         $store->nom = $request->nom;
         $store->ville = $request->ville;
         $store->pays = $request->pays;
         $store->maxJoueurs = $request->maxJoueurs;
-        // $continent->nom_continent = $request->nom_continent;
-        // $continent->save();
-        // $store->continent_id = $continent->id;
         $store->continent_id = $request->continent_id;
         $store->save();
-        return redirect('/equipe');
+        return redirect('/equipe')->with('message', "IT'S REGISTERED!");
     }
     
 
@@ -59,9 +58,12 @@ class EquipeController extends Controller
      * @param  \App\Models\Equipe  $equipe
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipe $equipe)
+    public function show($id)
     {
-        //
+        $showequipe = Equipe::find('$id');
+        $showjoueur = Joueur::all();
+        $roles = Role::all();
+        return view('pages.equipe.show', compact('showjoueur', 'roles',  'showequipe'));
     }
 
     /**
@@ -70,9 +72,11 @@ class EquipeController extends Controller
      * @param  \App\Models\Equipe  $equipe
      * @return \Illuminate\Http\Response
      */
-    public function edit(Equipe $equipe)
+    public function edit($id)
     {
-        //
+        $edit = Equipe::find($id);
+        $continents = Continent::all();
+        return view('pages.equipe.editEquipe', compact('edit', 'continents'));
     }
 
     /**
@@ -82,9 +86,16 @@ class EquipeController extends Controller
      * @param  \App\Models\Equipe  $equipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Equipe $equipe)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Equipe::find($id);
+        $update->nom = $request->nom;
+        $update->ville = $request->ville;
+        $update->pays = $request->pays;
+        $update->maxJoueurs = $request->maxJoueurs;
+        $update->continent_id = $request->continent_id;
+        $update->save();
+        return redirect('/equipe');
     }
 
     /**
@@ -97,6 +108,6 @@ class EquipeController extends Controller
     {
         $destroy = Equipe::find($id);
         $destroy->delete();
-        return redirect('/equipe');
+        return redirect('/equipe')->with('messageDelete', "IT'S DELETED!");
     }
 }
