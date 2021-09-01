@@ -10,6 +10,7 @@
             {{ session()->get('messageDelete') }}
         </div>
     @endif
+    
     @if ($errors->any())
         <div class="alert alert-warning alert-block">
             <ul>
@@ -19,6 +20,11 @@
             </ul>
         </div>
     @endif
+    {{-- @if ($message = Session::get('statut'))
+    <div class="container alert alert-danger mt-2 w-50">
+        {{ $message }}
+    </div>
+@endif --}}
     <section class="container">
         <div class="container mt-5  mb-3">
             <h3 class="text-white text-center">Création d'équipes</h3>

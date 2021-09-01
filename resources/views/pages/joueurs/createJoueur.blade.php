@@ -1,6 +1,6 @@
 @extends('template.main')
 @section('content')
-@if (session()->has('message'))
+    @if (session()->has('message'))
         <div class="container alert alert-success mt-2 w-50">
             {{ session()->get('message') }}
         </div>
@@ -8,6 +8,11 @@
     @if (session()->has('messageDelete'))
         <div class="container alert alert-danger mt-2 w-50">
             {{ session()->get('messageDelete') }}
+        </div>
+    @endif
+    @if (session()->has('statut'))
+        <div class="container alert alert-warning mt-2 w-50">
+            {{ session()->get('statut') }}
         </div>
     @endif
     @if ($errors->any())
