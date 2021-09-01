@@ -8,7 +8,7 @@
  body{
 	margin:0;
 	padding:0;
-  font-family: 'Nanum Myeongjo', serif;	font-size:12px;
+  font-family: 'Nanum Myeongjo', serif;	font-size:20px;
     background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
 	-webkit-animation: 10s linear 0s normal none infinite animate;
 	-moz-animation: 10s linear 0s normal none infinite animate;
@@ -41,6 +41,11 @@
 @keyframes animate {
 	from {background-position:0 0;}
 	to {background-position: 500px 0;}
+}
+
+.btn1:hover{
+  background-color: #2c3034;
+  color: white;
 }
 :root {
   --bs-blue: #3490dc;
@@ -5558,6 +5563,7 @@ textarea.form-control-lg {
   display: flex;
   flex-direction: column;
   width: 100%;
+  font-size: 18px;
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;

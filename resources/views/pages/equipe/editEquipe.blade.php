@@ -2,7 +2,7 @@
 @section('content')
     <section>
         <div class="container mt-5 w-50 mb-5">
-            <form action="/equipe/{{ $edit->id }}" method="POST" enctype="multipart/form-data">
+            <form action="/equipe/{{ $edit->id }}" style="font-size: 18px" method="POST" class="form-control" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">

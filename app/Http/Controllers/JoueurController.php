@@ -44,6 +44,18 @@ class JoueurController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'nom' => ['required', 'min:3', 'max:35'],
+            'prenom' => ['required', 'min:2', 'max:35'],
+            'age' => ['required', 'min:1', 'max:5'],
+            'tlf' => ['required', 'min:5', 'max:25'],
+            'email' => ['required', 'min:5', 'max:35'],
+            'genre' => ['required', 'min:2', 'max:25'],
+            'pays_origine' => ['required', 'min:2', 'max:35'],
+            'role_id' => ['required'],
+            'equipe_id' => ['required'],
+        ]);
+
         $photo = new Photo;
         Storage::put('public/img/', $request->file('src'));
         $photo->src = $request->file('src')->hashName();

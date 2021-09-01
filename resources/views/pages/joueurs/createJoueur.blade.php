@@ -19,56 +19,56 @@
             </ul>
         </div>
     @endif
-<section class="container w-75">
+<section class="container ">
     <div class="container mt-5 ">
-        <h3>Création de joueurs</h3>
-        <form action="/joueur" method="POST" class="form-control" enctype="multipart/form-data" class="w-50">
+        <h3 class="text-white text-center">Création de joueurs</h3>
+        <form action="/joueur" style="font-size: 18px" method="POST" class="form-control w-50 m-auto" enctype="multipart/form-data" class="w-50">
             @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nom:</label>
-                <input type="text" name="nom" class="form-control" id="exampleInputEmail1"
+                <input type="text" name="nom" value="{{old('nom')}}" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Prenom:</label>
-                <input type="text" name="prenom" class="form-control" id="exampleInputEmail1"
+                <input type="text" name="prenom" value="{{old('prenom')}}" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Age:</label>
-                <input type="number" name="age" class="form-control" id="exampleInputEmail1"
+                <input type="number" name="age" value="{{old('age')}}" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Télephone:</label>
-                <input type="number" name="tlf" class="form-control" id="exampleInputEmail1"
+                <input type="number" name="tlf" value="{{old('tlf')}}" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email:</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                <input type="email" name="email" value="{{old('email')}}" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
             <label for="exampleInputEmail1" class="form-label">Genre:</label>
-            <select name="genre" class="form-select mb-3" aria-label="Default select example">
+            <select name="genre" value="{{old('genre')}}" class="form-select mb-3" aria-label="Default select example">
                 <option selected>Choisis un genre</option>
                     <option value="Homme">Homme</option>
                     <option value="Femme">Femme</option>
             </select>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Pays:</label>
-                <input type="text" name="pays_origine" class="form-control" id="exampleInputEmail1"
+                <input type="text" name="pays_origine" value="{{old('pays_origine')}}" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
             <label for="exampleInputEmail1" class="form-label">Role:</label>
-            <select name="role_id" class="form-select mb-3" aria-label="Default select example">
+            <select name="role_id" value="{{old('role_id')}}" class="form-select mb-3" aria-label="Default select example">
                 <option selected>Choisis un role</option>
                 @foreach ($roles as $role)
                     <option value="{{$role->id}}">{{$role->role}}</option>
                 @endforeach
             </select>
             <label for="exampleInputEmail1" class="form-label">Equipe:</label>
-            <select name="equipe_id" class="form-select mb-3" aria-label="Default select example">
+            <select name="equipe_id" class="form-select mb-3" value="{{old('equipe_id')}}" aria-label="Default select example">
                 <option selected>Choisis une équipe</option>
                 @foreach ($equipes as $equipe)
                     <option value="{{$equipe->id}}">{{$equipe->nom}}</option>
@@ -76,11 +76,11 @@
             </select>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Photo:</label>
-                <input class="form-control" name="src" type="file" id="formFile">
+                <input class="form-control" value="{{old('src')}}" name="src" type="file" id="formFile">
             </div>
-            <button type="submit" class="btn btn-primary">Créer</button>
+            <button type="submit" class="btn btn-primary text-white">Créer</button>
         </form>
-        <table class="table mt-5 table-success table-striped w-50">
+        <table class="table mt-5 table-primary table-striped w-100 m-auto">
             <thead>
                 <tr>
                     <th class="text-center" scope="col">#</th>
@@ -118,7 +118,7 @@
                                 >Télecharger</a></td>
                         <td></td>
                         <td class="text-center">
-                            <a class="btn btn-success text-white" href="/joueur/{{$joueur->id}}/edit">EDIT</a>
+                            <a class="btn btn-primary text-white" href="/joueur/{{$joueur->id}}/edit">EDIT</a>
                         </td>
                         <td class="text-center">
                             <form action="/joueur/{{ $joueur->id }}" method="POST">

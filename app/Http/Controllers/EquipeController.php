@@ -41,6 +41,14 @@ class EquipeController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'nom' => ['required', 'min:3', 'max:35'],
+            'ville' => ['required', 'min:2', 'max:35'],
+            'pays' => ['required', 'min:1', 'max:35'],
+            'maxJoueurs' => ['required', 'min:1', 'max:150'],
+            'continent_id' => ['required', 'min:1', 'max:350'],
+        ]);
+
         $store = new Equipe;
         $store->nom = $request->nom;
         $store->ville = $request->ville;
